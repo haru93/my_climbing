@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateTweetsTable extends Migration
 {
@@ -20,7 +20,9 @@ class CreateTweetsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
+            $table->index('id');
             $table->index('user_id');
+            $table->index('text');
 
             $table->foreign('user_id')
                 ->references('id')

@@ -15,18 +15,11 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'tweet_id',
         'text'
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function tweets()
-    {
-        return $this->hasMany(Tweet::class);
+        return $this->belongsTo(User::class);
     }
 }

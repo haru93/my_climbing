@@ -15,7 +15,6 @@ class Tweet extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'text'
     ];
 
@@ -26,7 +25,7 @@ class Tweet extends Model
 
     public function favorites()
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->hasMany(Favorite::class);
     }
 
     public function comments()

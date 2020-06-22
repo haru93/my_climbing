@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateFovoritesTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,19 @@ class CreateFovoritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fovorites', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
             $table->unsignedInteger('tweet_id')->comment('ツイートID');
 
-            $table->unique(['user_id', 'tweet_id']);
+            $table->index('id');
+            $table->index('user_id');
+            $table->index('tweet_id');
+
+            $table->unique([
+                'user_id',
+                'tweet_id'
+            ]);
 
             $table->foreign('user_id')
                 ->references('id')
@@ -40,6 +48,6 @@ class CreateFovoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fovorites');
+        Schema::dropIfExists('favorites');
     }
 }

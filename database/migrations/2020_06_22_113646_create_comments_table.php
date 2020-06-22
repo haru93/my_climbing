@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateCommentsTable extends Migration
 {
@@ -21,7 +21,9 @@ class CreateCommentsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index(['user_id', 'tweet_id']);
+            $table->index('id');
+            $table->index('user_id');
+            $table->index('tweet_id');
 
             $table->foreign('user_id')
                 ->references('id')
